@@ -23,6 +23,11 @@ mkdir -p $dir
 
 debootstrap --arch=amd64 --variant=minbase $release $dir $mirror
 
+if [[ "$(echo $?)" -ne "0" ]]; then
+  echo -e "Something broke. Try running the script again.\nExiting."
+  exit
+fi
+
 hosts="
 127.0.0.1 localhost\n
 ::1 localhost ip6-localhost ip6-loopback\n
