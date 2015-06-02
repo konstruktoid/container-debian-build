@@ -1,7 +1,7 @@
 #!/bin/bash
 
 release="wheezy"
-mirror="http://http.debian.net/debian"
+mirror="ftp://ftp.se.debian.org/debian/"
 
 cmd="debootstrap"
 dir="./$release"
