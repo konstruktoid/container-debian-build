@@ -51,9 +51,11 @@ rm -rf $dir/usr/share/doc $dir/usr/share/doc-base \
 
 echo ".git" > .dockerignore
 
-for t in $(ls -1 *.tar); do
-  echo "$t" >> .dockerignore
-done
+if [[ $(ls -1 *.tar 2>/dev/null) ]]; then
+  for t in $(ls -1 *.tar); do
+    echo "$t" >> .dockerignore
+  done
+fi
 
 date="$(date +%y%m%d%H%M)"
 tar --numeric-owner -caf "$release-$date.tar" -C "$dir" --transform='s,^./,,' .
@@ -66,4 +68,5 @@ ADD ./$release-$date.tar /\n
 echo -e $dockerfile | sed 's/^ //g' > Dockerfile
 
 openssl sha1 -sha256 "$release-$date.tar" >> build.checksums
-#rm -rf $dir
+
+rm -rf $dir
