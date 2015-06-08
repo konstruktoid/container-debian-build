@@ -1,6 +1,6 @@
 #!/bin/bash
 
-release="wheezy"
+release="jessie"
 mirror="ftp://ftp.se.debian.org/debian/"
 
 cmd="debootstrap"

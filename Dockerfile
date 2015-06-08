@@ -1,3 +1,3 @@
 FROM scratch
-ADD ./wheezy-1506022335.tar /
+ADD ./jessie-1506082321.tar /
 
