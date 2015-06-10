@@ -65,13 +65,14 @@ fi
 date="$(date +%y%m%d%H%M)"
 tar --numeric-owner -caf "$release-$date.tar" -C "$dir" --transform='s,^./,,' .
 
+SHA="$(openssl sha1 -sha256 "$release-$date.tar" | awk '{print $NF}')"
+
 dockerfile="
 FROM scratch\n
 ADD ./$release-$date.tar /\n
+ENV SHA $SHA\n
 "
 
 echo -e $dockerfile | sed 's/^ //g' > Dockerfile
-
-openssl sha1 -sha256 "$release-$date.tar" >> build.checksums
 
 rm -rf $dir
