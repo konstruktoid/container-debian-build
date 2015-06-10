@@ -1,0 +1,4 @@
+FROM scratch
+ADD ./wheezy-1506110142.txz /
+ENV SHA ad2ecd520e70a8f6a46a7f089723b3117f6d454530f9f9f82f2244dee3bb2727
+
