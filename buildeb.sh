@@ -56,20 +56,20 @@ rm -rf $dir/usr/share/doc $dir/usr/share/doc-base \
 
 echo ".git" > .dockerignore
 
-if [[ $(ls -1 *.tar 2>/dev/null) ]]; then
-  for t in $(ls -1 *.tar); do
+if [[ $(ls -1 *.txz 2>/dev/null) ]]; then
+  for t in $(ls -1 *.txz); do
     echo "$t" >> .dockerignore
   done
 fi
 
 date="$(date +%y%m%d%H%M)"
-tar --numeric-owner -caf "$release-$date.tar" -C "$dir" --transform='s,^./,,' .
+tar --numeric-owner -caf "$release-$date.txz" -C "$dir" --transform='s,^./,,' .
 
-SHA="$(openssl sha1 -sha256 "$release-$date.tar" | awk '{print $NF}')"
+SHA="$(openssl sha1 -sha256 "$release-$date.txz" | awk '{print $NF}')"
 
 dockerfile="
 FROM scratch\n
-ADD ./$release-$date.tar /\n
+ADD ./$release-$date.txz /\n
 ENV SHA $SHA\n
 "
 
