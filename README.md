@@ -1,5 +1,5 @@
 ## Debian base image generator
-Run `sudo bash buildeb.sh` to generate a Debian base image.
+Run `sudo sh buildeb.sh` to generate a Debian base image.
 It will use `debootstrap`, create a tar-file, generate the `Dockerfile`
 and add a SHA256 checksum of the created tar-file to a `ENV` in the `Dockerfile`.
 `buildeb.sh` will also add `.git` and any previously generated tar-files
