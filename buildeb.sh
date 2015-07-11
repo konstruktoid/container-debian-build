@@ -60,6 +60,9 @@ rm -rf $dir/var/lib/apt/lists/*
 rm -rf $dir/usr/share/doc $dir/usr/share/doc-base \
   $dir/usr/share/man $dir/usr/share/locale $dir/usr/share/zoneinfo
 
+find $dir -user root -perm -2000 -exec chmod -s {} \;
+find $dir -user root -perm -4000 -exec chmod -s {} \;
+
 echo ".git" > .dockerignore
 
 if ls -1 ./*.txz 2>/dev/null; then
