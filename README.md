@@ -1,8 +1,8 @@
 ## Debian base image generator
 Run `sudo bash buildeb.sh` to generate a Debian base image.
 It will use `debootstrap`, create a tar-file, generate the `Dockerfile`
-and write the SHA256 checksum of the created tar-file to `build.checksums`.
-`buildeb.sh` will also add `.git` and previously generated tar-files
+and add a SHA256 checksum of the created tar-file to a `ENV` in the `Dockerfile`.
+`buildeb.sh` will also add `.git` and any previously generated tar-files
 to `.dockerignore`.
   
 The generated image will weigh in around 46M compared to the Docker hub library 
