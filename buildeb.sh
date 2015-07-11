@@ -1,43 +1,49 @@
-#!/bin/bash
+#!/bin/sh
 
 release="wheezy"
 mirror="ftp://ftp.se.debian.org/debian/"
 
-cmd="debootstrap"
+cmd="/usr/sbin/debootstrap"
 dir="./$release"
 
-if [[ "$(echo $EUID)" != "0" ]]; then
-  echo "Not root. Exiting."
+ID=$(id -u)
+if [ "x$ID" != "x0" ]; then
+  echo "root privileges required."
   exit 1
 fi
 
-if [[ $(which $cmd) ]]; then
+if test -x $cmd; then
   echo "$cmd is installed. Moving on."
   else
-  echo "$cmd not installed. Installing."
+  echo "$cmd not installed. Installing debootstrap."
   apt-get update
-  apt-get install $cmd
+  apt-get install debootstrap
 fi
 
 mkdir -p $dir
 
 debootstrap --arch=amd64 --variant=minbase $release $dir $mirror
 
-if [[ "$(echo $?)" -ne "0" ]]; then
-  echo -e "Something broke. Try running the script again.\nExiting."
-  exit
+if [ "$?" -ne "0" ]; then
+  echo "Something broke. Try running the script again. Exiting."
+  exit 1
 fi
 
 hosts="
-127.0.0.1 localhost\n
-::1 localhost ip6-localhost ip6-loopback\n
-ff02::1 ip6-allnodes\n
-ff02::2 ip6-allrouters\n
+127.0.0.1 localhost
+::1 localhost ip6-localhost ip6-loopback$
+ff02::1 ip6-allnodes$
+ff02::2 ip6-allrouters$
 "
 
-echo -e $hosts | sed 's/^ //g' > $dir/etc/hosts
+printf '%s\n' "$hosts" | sed 's/^ //g' > $dir/etc/hosts
 
-echo $'#!/bin/sh\nexit 101' | sudo tee $dir/usr/sbin/policy-rc.d > /dev/null
+policy='
+#!/bin/sh
+exit 101
+'
+
+printf '%s\n' "$policy" | sudo tee $dir/usr/sbin/policy-rc.d > /dev/null
 chmod +x $dir/usr/sbin/policy-rc.d
 
 chroot $dir dpkg-divert --local --rename --add /sbin/initctl
@@ -54,10 +60,13 @@ rm -rf $dir/var/lib/apt/lists/*
 rm -rf $dir/usr/share/doc $dir/usr/share/doc-base \
   $dir/usr/share/man $dir/usr/share/locale $dir/usr/share/zoneinfo
 
+find $dir -user root -perm -2000 -exec chmod -s {} \;
+find $dir -user root -perm -4000 -exec chmod -s {} \;
+
 echo ".git" > .dockerignore
 
-if [[ $(ls -1 *.txz 2>/dev/null) ]]; then
-  for t in $(ls -1 *.txz); do
+if ls -1 ./*.txz 2>/dev/null; then
+  for t in ./*.txz; do
     echo "$t" >> .dockerignore
   done
 fi
@@ -68,11 +77,11 @@ tar --numeric-owner -caf "$release-$date.txz" -C "$dir" --transform='s,^./,,' .
 SHA="$(openssl sha1 -sha256 "$release-$date.txz" | awk '{print $NF}')"
 
 dockerfile="
-FROM scratch\n
-ADD ./$release-$date.txz /\n
-ENV SHA $SHA\n
+FROM scratch
+ADD ./$release-$date.txz /
+ENV SHA $SHA
 "
 
-echo -e $dockerfile | sed 's/^ //g' > Dockerfile
+printf '%s\n' "$dockerfile" | sed 's/^ //g' > ./Dockerfile
 
 rm -rf $dir
