@@ -1,5 +1,0 @@
-
-FROM scratch
-ADD ./jessie-1508062320.txz /
-ENV SHA 8afa94bd0430b8b355978c932d46d4de277b67b9feee8c6564199d81c249907b
-
