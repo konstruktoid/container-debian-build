@@ -10,7 +10,7 @@ version which is around 85M.
   
 ### Build and verify  
 ```sh
-$ sudo bash buildeb.sh  
+$ sudo sh buildeb.sh  
 $ docker build -t debian -f Dockerfile .  
 $ docker run -t -i debian cat /etc/debian_version  
 ```  
