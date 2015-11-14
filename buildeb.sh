@@ -22,6 +22,11 @@ fi
 
 mkdir -p $dir
 
+if test -f /etc/apt/apt.conf.d/01proxy; then
+  HTTPPROXY=$(grep 'Acquire::http::Proxy' /etc/apt/apt.conf.d/01proxy | sed 's/Acquire::http::Proxy /http_proxy=/g' | tr -d '";')
+  export $HTTPPROXY
+fi
+
 debootstrap --arch=amd64 --variant=minbase $release $dir $mirror
 
 if [ "$?" -ne "0" ]; then
