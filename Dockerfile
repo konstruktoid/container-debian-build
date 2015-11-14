@@ -1,0 +1,5 @@
+
+FROM scratch
+ADD ./jessie-1511142339.txz /
+ENV SHA f911e61131f514dc0cc24ab5e509bb6615b88191f5ca49e53df0b2de968f2247
+
