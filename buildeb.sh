@@ -82,15 +82,15 @@ if ls -1 ./*.txz 2>/dev/null; then
   done
 fi
 
-date="$(date +%y%m%d%H%M)"
-tar --numeric-owner -caf "$release-$date.txz" -C "$dir" --transform='s,^./,,' .
+date="$(date -u +%y%m%d%H%M)"
 
-SHA="$(openssl sha1 -sha256 "$release-$date.txz" | awk '{print $NF}')"
+LC_ALL=C tar --numeric-owner -caf "$release-$date.txz" -C "$dir" --transform='s,^./,,' .
+SHA256="$(openssl sha1 -sha256 "$release-$date.txz" | awk '{print $NF}')"
 
 dockerfile="
 FROM scratch
 ADD ./$release-$date.txz /
-ENV SHA $SHA
+ENV SHA $SHA256
 "
 
 printf '%s\n' "$dockerfile" | sed 's/^ //g' > ./Dockerfile
