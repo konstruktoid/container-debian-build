@@ -67,7 +67,7 @@ done
 rm -rf $dir/dev $dir/proc
 mkdir -p $dir/dev $dir/proc
 
-rm -rf $dir/var/lib/apt/lists/*
+rm -rf $dir/var/lib/apt/lists/* $dir/var/lib/dpkg/info/*
 rm -rf $dir/usr/share/doc $dir/usr/share/doc-base \
   $dir/usr/share/man $dir/usr/share/locale $dir/usr/share/zoneinfo
 
