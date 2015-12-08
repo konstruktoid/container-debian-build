@@ -8,11 +8,13 @@ to `.dockerignore`.
 The generated image will weigh in around 44M compared to the Docker hub library 
 version which is around 85M.
   
-### Build and verify  
+### Build and verify
+`sudo sh buildeb.sh <release> <mirror>`  
+For example:
 ```sh
-$ sudo bash buildeb.sh  
-$ docker build -t debian -f Dockerfile .  
-$ docker run -t -i debian cat /etc/debian_version  
+$ sudo sh buildeb.sh wheezy ftp://ftp.se.debian.org/debian/
+$ docker build -t debian -f Dockerfile .
+$ docker run -t -i debian cat /etc/debian_version
 ```  
 
 ### Recommended reading  
