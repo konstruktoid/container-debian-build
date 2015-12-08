@@ -1,7 +1,14 @@
 #!/bin/sh
 
-release="wheezy"
-mirror="ftp://ftp.se.debian.org/debian/"
+release="$1"
+mirror="$2"
+
+if [ -z "$release" -o -z "$mirror" ]; then
+  echo "You have to define a release and mirror."
+  exit 1
+fi
+
+echo "Building release $release using mirror $mirror."
 
 cmd="/usr/sbin/debootstrap"
 dir="./$release"
