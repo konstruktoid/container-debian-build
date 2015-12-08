@@ -5,7 +5,7 @@ and add a SHA256 checksum of the created tar-file to a `ENV` in the `Dockerfile`
 `buildeb.sh` will also add `.git` and any previously generated tar-files
 to `.dockerignore`.
   
-The generated image will weigh in around 80M compared to the Docker hub library 
+The generated image will weigh in around 77M compared to the Docker hub library 
 version which is around 125M.
   
 ### Build and verify  
