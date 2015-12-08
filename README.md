@@ -10,6 +10,7 @@ version which is around 85M.
   
 ### Build and verify
 `sudo sh buildeb.sh <release> <mirror>`  
+
 For example:
 ```sh
 $ sudo sh buildeb.sh wheezy ftp://ftp.se.debian.org/debian/
