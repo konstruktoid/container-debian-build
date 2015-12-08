@@ -67,7 +67,7 @@ done
 rm -rf $dir/dev $dir/proc
 mkdir -p $dir/dev $dir/proc
 
-rm -rf $dir/var/lib/apt/lists/*
+rm -rf $dir/var/lib/apt/lists/* $dir/var/lib/dpkg/info/*
 rm -rf $dir/usr/share/doc $dir/usr/share/doc-base \
   $dir/usr/share/man $dir/usr/share/locale $dir/usr/share/zoneinfo
 
@@ -82,15 +82,15 @@ if ls -1 ./*.txz 2>/dev/null; then
   done
 fi
 
-date="$(date +%y%m%d%H%M)"
-tar --numeric-owner -caf "$release-$date.txz" -C "$dir" --transform='s,^./,,' .
+date="$(date -u +%y%m%d%H%M)"
 
-SHA="$(openssl sha1 -sha256 "$release-$date.txz" | awk '{print $NF}')"
+LC_ALL=C tar --numeric-owner -caf "$release-$date.txz" -C "$dir" --transform='s,^./,,' .
+SHA256="$(openssl sha1 -sha256 "$release-$date.txz" | awk '{print $NF}')"
 
 dockerfile="
 FROM scratch
 ADD ./$release-$date.txz /
-ENV SHA $SHA
+ENV SHA $SHA256
 "
 
 printf '%s\n' "$dockerfile" | sed 's/^ //g' > ./Dockerfile
