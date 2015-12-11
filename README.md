@@ -6,14 +6,14 @@ and add a SHA256 checksum of the created tar-file to a `ENV` in the `Dockerfile`
 to `.dockerignore`.
 
 ### Build and verify
-`sudo sh buildeb.sh <release> <mirror>`  
+`sudo sh buildeb.sh <release> <mirror> <directory>`  
 
 For example:
 ```sh
-$ sudo sh buildeb.sh wheezy ftp://ftp.se.debian.org/debian/
-$ docker build -t debian -f Dockerfile .
+$ sudo sh buildeb.sh wheezy ftp://ftp.se.debian.org/debian/ "$(pwd)/buildarea"
+$ docker build -t debian -f Dockerfile.wheezy .
 $ docker run -t -i debian cat /etc/debian_version
-```  
+```
 
 ### Using Docker
 Debian:  

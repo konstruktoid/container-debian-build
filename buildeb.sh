@@ -2,6 +2,7 @@
 
 release="$1"
 mirror="$2"
+location="$3"
 
 ID=$(id -u)
 if [ "x$ID" != "x0" ]; then
@@ -17,7 +18,13 @@ fi
 echo "Building release $release using mirror $mirror."
 
 cmd="/usr/sbin/debootstrap"
-dir="/opt/buildarea/$release"
+
+if [ -z "$location" ]; then
+  dir="/opt/buildarea/$release"
+  else
+  dir="$location/$release"
+fi
+
 cwd="$(dirname "$dir")"
 
 echo "Build directory is $dir."
