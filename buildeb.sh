@@ -3,6 +3,12 @@
 release="$1"
 mirror="$2"
 
+ID=$(id -u)
+if [ "x$ID" != "x0" ]; then
+  echo "root privileges required."
+  exit 1
+fi
+
 if [ -z "$release" -o -z "$mirror" ]; then
   echo "You have to define a release and mirror."
   exit 1
@@ -11,13 +17,11 @@ fi
 echo "Building release $release using mirror $mirror."
 
 cmd="/usr/sbin/debootstrap"
-dir="./$release"
+dir="/opt/buildarea/$release"
+cwd="$(dirname "$dir")"
 
-ID=$(id -u)
-if [ "x$ID" != "x0" ]; then
-  echo "root privileges required."
-  exit 1
-fi
+echo "Build directory is $dir."
+echo "Output directory is $cwd."
 
 if test -x $cmd; then
   echo "$cmd is installed. Moving on."
@@ -28,6 +32,7 @@ if test -x $cmd; then
 fi
 
 mkdir -p "$dir"
+cd "$cwd"
 
 if test -f /etc/apt/apt.conf.d/01proxy; then
   HTTPPROXY=$(grep 'Acquire::http::Proxy' /etc/apt/apt.conf.d/01proxy | sed 's/Acquire::http::Proxy /http_proxy=/g' | tr -d '";')
@@ -65,7 +70,7 @@ chroot "$dir" apt-get update
 chroot "$dir" apt-get -y upgrade
 chroot "$dir" apt-get clean
 
-grep -v -e 'root' -e 'nobody' "$dir/etc/passwd" | awk -F ':' '{print $1}' | \
+grep -v -e 'root' -e 'nobody' -e 'systemd' "$dir/etc/passwd" | awk -F ':' '{print $1}' | \
  while IFS= read -r userlist
 do
   chroot "$dir" userdel -r "$userlist"
@@ -100,6 +105,7 @@ ADD ./$release-$date.txz /
 ENV SHA $SHA256
 "
 
-printf '%s\n' "$dockerfile" | sed 's/^ //g' > ./Dockerfile
+printf '%s\n' "$dockerfile" | sed 's/^ //g' > ./Dockerfile."$release"
+
 
 rm -rf "$dir"
