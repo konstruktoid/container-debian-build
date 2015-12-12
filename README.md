@@ -1,5 +1,5 @@
 ## Debian and Ubuntu base image generator
-If you're not using Docker, run `sudo sh buildeb.sh` to generate a Debian or Ubuntu base image.  
+If you're not using Docker, run `sudo sh buildeb.sh` to generate a Debian or Ubuntu base image on a Debian or Ubuntu host.  
 It will use `debootstrap`, create a tar-file, generate the `Dockerfile`
 and add a SHA256 checksum of the created tar-file to a `ENV` in the `Dockerfile`.
 `buildeb.sh` will also add `.git` and any previously generated tar-files
@@ -16,15 +16,9 @@ $ docker run -t -i debian cat /etc/debian_version
 ```
 
 ### Using Docker
-Debian:  
 ```sh
 docker build -t debianbuild -f Dockerfile .
 docker run --privileged -v "$(pwd)"/buildarea:/opt/buildarea konstruktoid/debianbuild wheezy ftp://ftp.se.debian.org/debian/
-```
-
-Ubuntu:  
-```sh
-docker run --privileged -v "$(pwd)":/opt/buildarea konstruktoid/debianbuild trusty http://se.archive.ubuntu.com/ubuntu/
 ```
 
 ### Recommended reading  
