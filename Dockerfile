@@ -1,5 +1,5 @@
 
 FROM scratch
-ADD ./wheezy-1601042128.txz /
-ENV SHA f82124d46e081fcd6eabd4899becce32c2ce1190e65183a26c22ac159a7b7e4f
+ADD ./wheezy-1601142027.txz /
+ENV SHA 47427bdbd42bd4356e6f277417a6fbe420a6b6effc57965ce34efa4e49856c29
 
