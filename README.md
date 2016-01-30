@@ -18,10 +18,15 @@ $ docker run -t -i debian cat /etc/debian_version
 ### Using Docker
 ```sh
 docker build -t debianbuild -f Dockerfile .
+docker run --privileged -v "$(pwd)"/buildarea:/opt/buildarea debianbuild wheezy ftp://ftp.se.debian.org/debian/
+```
+
+### Autobuild
+```sh
 docker run --privileged -v "$(pwd)"/buildarea:/opt/buildarea konstruktoid/debianbuild wheezy ftp://ftp.se.debian.org/debian/
 ```
 
-### Recommended reading  
+### Recommended reading
 [Before you initiate a “docker pull”](https://securityblog.redhat.com/2014/12/18/before-you-initiate-a-docker-pull/)  
 [Docker Security Cheat Sheet](https://github.com/konstruktoid/Docker/blob/master/Security/CheatSheet.md)  
 [Security Vulnerabilities in Docker Hub Images](http://www.infoq.com/news/2015/05/Docker-Image-Vulnerabilities)  
