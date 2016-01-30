@@ -1,5 +1,5 @@
 
 FROM scratch
-ADD ./jessie-1601201814.txz /
-ENV SHA 507893155ddfdec25574f4a730e5d9f80cec3b14af8d073738786fbd4b45218e
+ADD ./jessie-1601301528.txz /
+ENV SHA d84adab8dff6946e6790dfbaadb08ff9be45ce3f89024a37afba0184862dace6
 
