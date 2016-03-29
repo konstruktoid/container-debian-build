@@ -1,5 +1,7 @@
 
 FROM scratch
-ADD ./jessie-1603162043.txz /
-ENV SHA f4044903103af701e105369cf3bc3f6f14bc2458b959cf2720da79bc0f1b83d9
+ADD ./jessie-1603292001.txz /
+ENV SHA e29e7557d31d035e2b1ddd4bf937ed5df056a269887f37c871d5e686f6d1b410
+
+ONBUILD RUN apt-get update && apt-get -y upgrade
 
