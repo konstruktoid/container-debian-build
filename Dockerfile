@@ -1,7 +1,7 @@
 
 FROM scratch
-ADD ./wheezy-1603291952.txz /
-ENV SHA 9ccc884be3259363ac04cef29c2804707b423b1b533683fbb89d524e5825da3e
+ADD ./wheezy-1604052037.txz /
+ENV SHA f72f74e672c4a41b5c71b103b482d4592c71a4c86b7212c814a91415d7ce0e5a
 
-ONBUILD RUN apt-get update && apt-get -y upgrade
+ONBUILD RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 
