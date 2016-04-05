@@ -112,10 +112,7 @@ FROM scratch
 ADD ./$release-$date.txz /
 ENV SHA $SHA256
 
-ARG TERM=linux
-ARG DEBIAN_FRONTEND=noninteractive
-
-ONBUILD RUN apt-get update && apt-get -y upgrade
+ONBUILD RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 "
 
 printf '%s\n' "$dockerfile" | sed 's/^ //g' > ./Dockerfile."$release"
