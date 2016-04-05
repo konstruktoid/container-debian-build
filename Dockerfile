@@ -4,7 +4,7 @@ ENV BUILDAREA /opt/buildarea
 
 RUN \
   apt-get update && \
-  apt-get -y upgrade && \
+  DEBIAN_FRONTEND=noninteractive apt-get -y upgrade && \
   apt-get -y install debootstrap openssl sudo xz-utils && \
   mkdir -p $BUILDAREA && \
   apt-get clean && \
