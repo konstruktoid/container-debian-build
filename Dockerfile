@@ -1,14 +1,16 @@
-FROM konstruktoid/debian
+FROM konstruktoid/debian:wheezy
 
 ENV BUILDAREA /opt/buildarea
 
+ARG TERM=linux
+ARG DEBIAN_FRONTEND=noninteractive
+
 RUN \
   apt-get update && \
-  DEBIAN_FRONTEND=noninteractive apt-get -y upgrade && \
+  apt-get -y upgrade && \
   apt-get -y install debootstrap openssl sudo xz-utils && \
   mkdir -p $BUILDAREA && \
   apt-get clean && \
-  apt-get autoremove && \
   rm -rf /var/lib/apt/lists/* \
     /usr/share/doc /usr/share/doc-base \
     /usr/share/man /usr/share/locale /usr/share/zoneinfo
