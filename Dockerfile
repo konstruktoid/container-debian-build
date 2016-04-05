@@ -1,7 +1,10 @@
 
 FROM scratch
-ADD ./jessie-1603292001.txz /
-ENV SHA e29e7557d31d035e2b1ddd4bf937ed5df056a269887f37c871d5e686f6d1b410
+ADD ./jessie-1604052121.txz /
+ENV SHA 4076a92b2b730d3292f676b7844ee65e980c8f475ae2938468450c99975a5569
+
+ARG TERM=linux
+ARG DEBIAN_FRONTEND=noninteractive
 
 ONBUILD RUN apt-get update && apt-get -y upgrade
 
