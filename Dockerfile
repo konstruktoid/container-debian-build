@@ -1,7 +1,7 @@
 
 FROM scratch
-ADD ./wheezy-1604072022.txz /
-ENV SHA 0e79ff2f5d95ed8c8d6ad1b0d49cfeaac06c0d20d8716839199aff8de3a026ae
+ADD ./wheezy-1604182011.txz /
+ENV SHA 28b1e3973f29eacb49b9804e8add8af234dc3a2a360de1e582daba078366dcb6
 
 ARG TERM=linux
 ARG DEBIAN_FRONTEND=noninteractive
