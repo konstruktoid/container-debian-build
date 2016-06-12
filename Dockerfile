@@ -1,7 +1,7 @@
 
 FROM scratch
-ADD ./jessie-1605151727.txz /
-ENV SHA 955b0b9510e2bc567760a063206a5af3bff733cea7ab718b02d227e3017939df
+ADD ./jessie-1606122102.txz /
+ENV SHA e0e926cd2d5d390d4bee7b30430c4af8dbf3efabf84e44db05a71d383ac4cce4
 
 ARG TERM=linux
 ARG DEBIAN_FRONTEND=noninteractive
