@@ -1,7 +1,7 @@
 
 FROM scratch
-ADD ./stretch-1801061941.txz /
-ENV SHA 550f34562a596e6acb22fbe7ffffa74dafa8e6659dc0756f50e9a4138f928895
+ADD ./stretch-1805142052.txz /
+ENV SHA f12ad6cbb0a3f50ec77dd395fda5d478db2d5b338c3de87741dc065b72fce1ee
 
 ARG TERM=linux
 ARG DEBIAN_FRONTEND=noninteractive
