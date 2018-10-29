@@ -1,0 +1,4 @@
+# wheezy Docker image
+
+FILE: wheezy-1810292125.txz
+SHA256: 950a0723b0e649d53bac8c41bac27952681a65b33a063e536e40c73eb15340ae

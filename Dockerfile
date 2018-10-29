@@ -1,10 +1,10 @@
 
 FROM scratch
-ADD ./wheezy-1805142110.txz /
-ENV SHA 4324eb193e90bf799e54fae6befcb7e1c691523e4adf405ae9c8e7407ae248a9
+ADD ./wheezy-1810292125.txz /
+ENV SHA256 950a0723b0e649d53bac8c41bac27952681a65b33a063e536e40c73eb15340ae
 
 ARG TERM=linux
 ARG DEBIAN_FRONTEND=noninteractive
 
-ONBUILD RUN apt-get update && apt-get -y upgrade
+ONBUILD RUN apt-get update && sh -c 'yes | apt-get --assume-yes upgrade'
 
