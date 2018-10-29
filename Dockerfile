@@ -1,10 +1,10 @@
 
 FROM scratch
-ADD ./jessie-1805142117.txz /
-ENV SHA 92dad66a9b8563bfb3dcb792ee7d5f143a793ef4260f498703a9ddc147f0278f
+ADD ./jessie-1810292136.txz /
+ENV SHA256 e33f8ca9619ea285f0daf652f59f5b5c964c5167ae98be599af90e53d8f79ef6
 
 ARG TERM=linux
 ARG DEBIAN_FRONTEND=noninteractive
 
-ONBUILD RUN apt-get update && apt-get -y upgrade
+ONBUILD RUN apt-get update && sh -c 'yes | apt-get --assume-yes upgrade'
 
