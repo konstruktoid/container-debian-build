@@ -9,20 +9,20 @@ It will use `debootstrap`, create a tar-file, generate the `Dockerfile` and add 
 
 For example:
 ```sh
-$ sudo sh buildeb.sh wheezy ftp://ftp.se.debian.org/debian/ "$(pwd)/buildarea"
-$ docker build -t debian -f Dockerfile.wheezy .
+$ sudo sh buildeb.sh stretch ftp://ftp.se.debian.org/debian/ "$(pwd)/buildarea"
+$ docker build -t debian -f Dockerfile.stretch .
 $ docker run -t -i debian cat /etc/debian_version
 ```
 
 == Using Docker
 ```sh
 docker build -t debianbuild -f Dockerfile .
-docker run --privileged -v "$(pwd)":/opt/buildarea debianbuild wheezy ftp://ftp.se.debian.org/debian/
+docker run --privileged -v "$(pwd)":/opt/buildarea debianbuild stretch ftp://ftp.se.debian.org/debian/
 ```
 
 == Autobuild
 ```sh
-docker run --privileged -v "$(pwd)":/opt/buildarea konstruktoid/debianbuild wheezy ftp://ftp.se.debian.org/debian/
+docker run --privileged -v "$(pwd)":/opt/buildarea konstruktoid/debianbuild stretch ftp://ftp.se.debian.org/debian/
 ```
 
 == Recommended reading
