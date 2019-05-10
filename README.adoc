@@ -16,7 +16,7 @@ $ docker run -t -i debian cat /etc/debian_version
 
 == Using Docker
 ```sh
-docker build --no-cache -t konstruktoid/debianbuild Dockerfile .
+docker build --no-cache -t konstruktoid/debianbuild -f Dockerfile .
 docker run --privileged -v "$(pwd)":/opt/buildarea konstruktoid/debianbuild stretch ftp://ftp.se.debian.org/debian/
 ```
 
