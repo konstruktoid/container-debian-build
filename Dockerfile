@@ -1,25 +1,10 @@
-FROM konstruktoid/debian:stretch
 
-ENV BUILDAREA /opt/buildarea
+FROM scratch
+ADD ./buster-1905102124.txz /
+ENV SHA256 7d1a8ebaa6b62352b6bb5c04dcbc6f94fbe76f3e3e817031816bb0df1a16ce03
 
 ARG TERM=linux
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN \
-  apt-get update && \
-  sh -c 'yes | apt-get --assume-yes upgrade' && \
-  apt-get --assume-yes install debootstrap openssl sudo xz-utils && \
-  apt-get --assume-yes clean && \
-  apt-get --assume-yes autoremove && \
-  mkdir -p $BUILDAREA && \
-  rm -rf /var/lib/apt/lists/* \
-    /usr/share/doc /usr/share/doc-base \
-    /usr/share/man /usr/share/locale /usr/share/zoneinfo
+ONBUILD RUN apt-get update && sh -c 'yes | apt-get --assume-yes upgrade'
 
-COPY ./buildeb.sh /buildeb.sh
-
-WORKDIR /
-VOLUME $BUILDAREA
-
-ENTRYPOINT ["/buildeb.sh"]
-CMD []
