@@ -1,7 +1,7 @@
 
 FROM scratch
-ADD ./buster-1905102124.txz /
-ENV SHA256 7d1a8ebaa6b62352b6bb5c04dcbc6f94fbe76f3e3e817031816bb0df1a16ce03
+ADD ./buster-1908270901.txz /
+ENV SHA256 139fbcad6add6af65d6d4ec3848832532cec16f391c7f845b8455ea506024fa6
 
 ARG TERM=linux
 ARG DEBIAN_FRONTEND=noninteractive
