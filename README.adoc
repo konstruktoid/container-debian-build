@@ -9,7 +9,7 @@ It will use `debootstrap`, create a tar-file, generate the `Dockerfile` and add 
 
 For example:
 ```sh
-$ sudo sh buildeb.sh buster ftp://ftp.se.debian.org/debian/ "$(pwd)/buildarea"
+$ sudo sh buildeb.sh buster http://deb.debian.org/debian "$(pwd)/buildarea"
 $ docker build -t konstruktoid/debian -f Dockerfile.buster .
 $ docker run -t -i konstruktoid/debian cat /etc/debian_version
 ```
@@ -17,12 +17,12 @@ $ docker run -t -i konstruktoid/debian cat /etc/debian_version
 == Using Docker
 ```sh
 docker build --no-cache -t konstruktoid/debianbuild -f Dockerfile .
-docker run --privileged -v "$(pwd)":/opt/buildarea konstruktoid/debianbuild buster ftp://ftp.se.debian.org/debian/
+docker run --privileged -v "$(pwd)":/opt/buildarea konstruktoid/debianbuild buster http://deb.debian.org/debian
 ```
 
 == Autobuild
 ```sh
-docker run --privileged -v "$(pwd)":/opt/buildarea konstruktoid/debianbuild buster ftp://ftp.se.debian.org/debian/
+docker run --privileged -v "$(pwd)":/opt/buildarea konstruktoid/debianbuild buster http://deb.debian.org/debian
 ```
 
 == Recommended reading
