@@ -1,7 +1,8 @@
 
 FROM scratch
-ADD ./jessie-1905102051.txz /
-ENV SHA256 dd41edb603fa6931cfa896ca6ee1103c9fd44ca3e367fa5f5806fb5970e10567
+LABEL maintainer='Thomas Sjögren <konstruktoid@users.noreply.github.com>'
+ADD ./jessie-2001240940.txz /
+ENV SHA256 07f03cd4e1b7cdc464811a41b302d23805e904303977d931abcf39eeeb93a0e6
 
 ARG TERM=linux
 ARG DEBIAN_FRONTEND=noninteractive
