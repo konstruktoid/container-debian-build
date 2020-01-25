@@ -1,8 +1,8 @@
 
 FROM scratch
 LABEL maintainer='Thomas Sjögren <konstruktoid@users.noreply.github.com>'
-ADD ./stretch-2001240909.txz /
-ENV SHA256 d51069d3460301bd6416dd65fe674cdf005c9aa79c2c4c808c68e96522ac8028
+ADD ./stretch-2001250055.txz /
+ENV SHA256 37451cc4d469017fc40e8cedbedb47e6b3017985d61515abf443fd4b1e4f8fb2
 
 ARG TERM=linux
 ARG DEBIAN_FRONTEND=noninteractive
