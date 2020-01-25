@@ -1,5 +1,7 @@
 FROM konstruktoid/debian:buster
 
+LABEL maintainer='Thomas Sjögren <konstruktoid@users.noreply.github.com>'
+
 ENV BUILDAREA /opt/buildarea
 
 ARG TERM=linux
