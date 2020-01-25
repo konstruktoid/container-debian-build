@@ -1,5 +1,5 @@
 # jessie Docker image
 
-* FILE: jessie-2001240940.txz
+* FILE: jessie-2001250045.txz
 * SIZE: 21M
-* SHA256: 07f03cd4e1b7cdc464811a41b302d23805e904303977d931abcf39eeeb93a0e6
+* SHA256: b0edd27fef96c1701bba6f7e8b29cd5d1994042848729c24aac72655f3fe4403
