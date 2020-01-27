@@ -1,5 +1,5 @@
 # stretch Docker image
 
-* FILE: stretch-2001250055.txz
-* SIZE: 19M
-* SHA256: 37451cc4d469017fc40e8cedbedb47e6b3017985d61515abf443fd4b1e4f8fb2
+* FILE: stretch-2001271047.txz
+* SIZE: 20M
+* SHA256: 7984bdbc34181d43b1a5d557006b5e9d835d3977ba10e0b68425ce11aa332306
