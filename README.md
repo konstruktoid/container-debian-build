@@ -1,5 +1,5 @@
 # buster Docker image
 
-* FILE: buster-2002251319.txz
+* FILE: buster-2004081016.txz
 * SIZE: 22M
-* SHA256: 0945dff3fb4ad8cc006a486d87a65f20bfa363de98b4f4148359602134b8ce07
+* SHA256: abf19d035b4b9733d86baf50fd19fef260a8e327637b9da77ff4eb7d191b0bde
