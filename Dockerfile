@@ -1,8 +1,8 @@
 
 FROM scratch
 LABEL maintainer='Thomas Sjögren <konstruktoid@users.noreply.github.com>'
-ADD ./buster-2012172159.txz /
-ENV SHA256 cc76e37ae89be37f4c2fb2802f5cc18518b0335f9fce3cb3ab7f2d4477cb4dd0
+ADD ./buster-2105200937.txz /
+ENV SHA256 eafa6b501d34070522c1a2df8bc3c52f4979aa406783806650c7eede4b26e8e9
 
 ARG TERM=linux
 ARG DEBIAN_FRONTEND=noninteractive
