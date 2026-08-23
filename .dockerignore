@@ -1,3 +1,3 @@
-.git
-buildarea
-*.md
+*
+!Dockerfile
+!buildeb.sh
